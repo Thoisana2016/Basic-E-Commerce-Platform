@@ -35,8 +35,8 @@ public class ProductController {
 //        Product product = new Product();
 //        product.getId();
 //        product.setTitle("tomba");
-        productService.getSingleProduct(id);
-         return  null;
+        return productService.getSingleProduct(id);
+//         return  null;
     }
 
     public void deleteProductById(Long id){

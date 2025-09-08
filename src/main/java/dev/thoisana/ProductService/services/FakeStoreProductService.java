@@ -12,10 +12,16 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class FakeStoreProductService implements ProductService {
+
+    private RestTemplate restTemplate;
+    public FakeStoreProductService(RestTemplate restTemplate){
+        this.restTemplate = restTemplate;
+    }
     @Override
     public Product getSingleProduct(Long id) {
-        RestTemplate restTemplate = new RestTemplate();
-        FakeStoreProductDto fakeStoreProductDto = restTemplate.getForObject("https://fakestoreapi.com/product/"+id, FakeStoreProductDto.class);
+        //RestTemplate restTemplate = new RestTemplate(); // lets avoid this object creation, instead use Dependency injection
+
+        FakeStoreProductDto fakeStoreProductDto = restTemplate.getForObject("https://fakestoreapi.com/products/"+id, FakeStoreProductDto.class);
 
         Product product = new Product();
         product.setId(fakeStoreProductDto.getId());
